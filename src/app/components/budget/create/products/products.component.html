@@ -1,0 +1,66 @@
+<mat-card>
+    <mat-card-title>Produtos</mat-card-title>
+    <form>
+        <mat-form-field appearance="fill" class="dropdown">
+            <mat-label>Selecione um Produto</mat-label>
+            <mat-select [(value)]="selected" *ngIf="products$ | async as products">
+                <mat-option *ngFor="let p of products" [value]="p.id">
+                    {{ p.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button (click)="addProduct()" mat-raised-button  color="secondary">
+            Adicionar
+        </button>
+        <div *ngIf="cart$ | async as cart">
+            <table mat-table [dataSource]="cart" *ngIf="cart.length > 0">
+                <!-- Id Column -->
+                <ng-container matColumnDef="id">
+                <th class="tabTable" mat-header-cell *matHeaderCellDef>Id</th>
+                <td mat-cell *matCellDef="let row">{{row.product.id}}</td>
+                </ng-container>
+    
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                <th class="tabTable" mat-header-cell *matHeaderCellDef>Nome</th>
+                <td mat-cell *matCellDef="let row">{{row.product.name}}</td>
+                </ng-container>
+    
+                <!-- Quantity Column -->
+                <ng-container matColumnDef="quantity">
+                <th class="tabTable" mat-header-cell *matHeaderCellDef>Quantidade</th>
+                <td mat-cell *matCellDef="let row">{{ row.quantity}}</td>
+                </ng-container>
+    
+                <!-- Action Column -->
+                <ng-container matColumnDef="action">
+                <th class="tabTable" mat-header-cell *matHeaderCellDef>Ações</th>
+                <td mat-cell *matCellDef="let row">
+                    <button (click)="addProduct(row.product.id)" mat-raised-button class="buttonIncrease">
+                        +1
+                    </button>
+                    <button (click)="removeProduct(row.product.id)" mat-raised-button class="buttonDecrease" >
+                        -1
+                    </button>
+                    <button (click)="dropProduct(row.product.id)" mat-raised-button class="buttonRemove">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+    
+            <div *ngIf="cart.length === 0">Nenhum Produto Adicionado</div>
+            <div class="divButtons">
+                <button (click)="navigateToClient()" mat-raised-button>
+                    Anterior
+                </button>
+                <button (click)="navigateToValidation()" mat-raised-button  color="primary" [disabled]="cart.length == 0">
+                    Próximo
+                </button>    
+            </div>
+        </div>
+    </form>
+</mat-card>

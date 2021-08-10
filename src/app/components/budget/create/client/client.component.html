@@ -1,0 +1,25 @@
+<mat-card>
+    <mat-card-title>Dados Cliente</mat-card-title>
+    <form  [formGroup]="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Nome do Cliente</mat-label>
+            <input matInput placeholder="João Silva"
+            name="name" [(ngModel)]="name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>CNPJ do Cliente</mat-label>
+            <input matInput placeholder="00.000.000/0000-00"
+            name="cnpj" [(ngModel)]="cnpj" formControlName="cnpj" mask="00.000.000/0000-00">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email do Cliente</mat-label>
+            <input matInput placeholder="exemplo@email.com"
+            name="email" [(ngModel)]="email" formControlName="email">
+        </mat-form-field>
+    </form>
+    <div class="divButtons">
+        <button (click)="navigateToProducts()" disabled="{{this.form.invalid}}" mat-raised-button  color="primary">
+            Próximo
+        </button>
+    </div>
+</mat-card>

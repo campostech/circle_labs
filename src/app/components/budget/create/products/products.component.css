@@ -1,0 +1,43 @@
+table {
+    margin-left: 15%;
+    width: 70%;
+    margin-right: 15%;
+    border: 3px solid #673ab7;
+}
+
+mat-form-field{
+    width: 40%;
+    padding-right: 20px;
+}
+
+form{
+    text-align: center;
+}
+
+.tabTable{
+    text-align: center;
+    background-color: #673ab7;
+    color: white;
+}
+
+.dropdown{
+    background-color: rgb(247 247 247);
+}
+
+.buttonIncrease{
+    background-color: green;
+    color: white;
+    margin: 0px 5px 0px 5px;
+}
+
+.buttonDecrease{
+    background-color: orange;
+    color: white;
+    margin: 0px 5px 0px 5px;
+}
+
+.buttonRemove{
+    background-color: red;
+    color: white;
+    margin: 0px 5px 0px 15px;
+}
